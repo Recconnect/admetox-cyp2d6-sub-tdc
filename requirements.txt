@@ -1,0 +1,25 @@
+# Python 3.10+ required
+# core ML
+numpy>=1.24.0
+scipy>=1.10.0
+scikit-learn>=1.4.0
+rdkit>=2024.03.0
+
+# GNN fine-tune (GIN-ContextPred backbone)
+# torch: CPU wheel by default; install torch --index-url https://download.pytorch.org/whl/cu121 (CUDA)
+#        or the official ROCm wheel for AMD GPUs. dgl>=1.1.0 ships CPU wheels on pip;
+#        use dgl-cu1xx / dgl-cu12x for CUDA builds.
+torch>=2.1.0
+dgl>=1.1.0
+dgllife>=0.3.2
+
+# PyTDC must be installed separately via: pip install PyTDC --no-deps
+# (cellxgene-census==1.15.0 dep conflicts with Python 3.12)
+# These are PyTDC's runtime dependencies:
+requests>=2.31.0
+tqdm>=4.65.0
+fuzzywuzzy>=0.18.0
+setuptools<73
+huggingface_hub>=0.26.0
+datasets>=2.19.0
+evaluate>=0.4.0
