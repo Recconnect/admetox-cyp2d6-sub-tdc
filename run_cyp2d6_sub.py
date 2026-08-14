@@ -136,10 +136,12 @@ def build_graphs(smiles_list):
 def _fallback_graph():
     import dgl
     g = dgl.graph(([], []))
+    g.add_nodes(1)
+    g.add_edges([0], [0])
     g.ndata["atomic_number"] = torch.tensor([6], dtype=torch.long)
     g.ndata["chirality_type"] = torch.tensor([0], dtype=torch.long)
-    g.edata["bond_type"] = torch.tensor([], dtype=torch.long)
-    g.edata["bond_direction_type"] = torch.tensor([], dtype=torch.long)
+    g.edata["bond_type"] = torch.tensor([0], dtype=torch.long)
+    g.edata["bond_direction_type"] = torch.tensor([0], dtype=torch.long)
     return g
 
 

@@ -1,6 +1,8 @@
 # Python 3.10+ required
 # core ML
-numpy>=1.24.0
+# dgl's compiled extensions are built against NumPy 1.x; pin numpy<2 so a
+# fresh clone does not install NumPy 2.x and crash on graph construction.
+numpy>=1.24.0,<2
 scipy>=1.10.0
 scikit-learn>=1.4.0
 rdkit>=2024.03.0
