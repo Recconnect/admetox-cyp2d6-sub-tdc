@@ -9,10 +9,10 @@ Fine-tuned GIN (ContextPred, ZINC15-pretrained) for CYP2D6 substrate prediction 
 | Metric | Our Score | TDC SOTA | Gap |
 |--------|-----------|----------|-----|
 | AUPRC (averaged-vector) | **0.7675** | 0.736 (ContextPred) | **+0.032** ✅ |
-| TDC evaluate_many | **0.7430 ± 0.0150** | 0.736 ± 0.024 | **+0.007** ✅ |
+| TDC evaluate_many | **0.7420 ± 0.0200** | 0.736 ± 0.024 | **+0.006** ✅ |
 
 - **30 independent seeds**, each trained on all official train_val (532 molecules) with stratified inner-val early stopping
-- **16/30 seeds** individually ≥ SOTA 0.736
+- **20/30 seeds** individually ≥ SOTA 0.736
 - Same architecture that holds the SOTA slot — a GIN pretrained with **ContextPred self-supervision on ZINC15** (Hu et al. 2020) — but fine-tuned with a small, well-tuned head. No ADMET-label pretraining → no CYP2D6 label leakage.
 - Reproduces and beats the leaderboard ContextPred entry by fine-tuning the identical backbone with **AUPRC-optimal early stopping** (the leaderboard entry trains a fixed 100 epochs).
 
@@ -38,7 +38,7 @@ Fine-tuned GIN (ContextPred, ZINC15-pretrained) for CYP2D6 substrate prediction 
 | Protocol | train on **all** 532 train_val; per-seed stratified 15% inner-val for **early stopping on AUPRC**; best-epoch model predicts the 135 test molecules |
 | Seeds | 0..29 — model reset to the pretrained checkpoint before every seed (independent runs) |
 
-Why it beats the leaderboard ContextPred: the TDC ContextPred baseline trains a fixed 100 epochs with no early stopping. Fine-tuning the same backbone with **inner-val AUPRC early stopping** (60-epoch cap, 15% stratified holdout) yields 0.736 → **0.743 (mean) / 0.768 (vector)**.
+Why it beats the leaderboard ContextPred: the TDC ContextPred baseline trains a fixed 100 epochs with no early stopping. Fine-tuning the same backbone with **inner-val AUPRC early stopping** (60-epoch cap, 15% stratified holdout) yields 0.736 → **0.742 (mean) / 0.768 (vector)**.
 
 ### Ablation: pretraining is essential
 
@@ -78,9 +78,9 @@ python run_cyp2d6_sub.py --seeds 0,1,2,3,4,5,6,7
 
 Expected output (30 seeds):
 ```
-TDC evaluate_many:     0.7430 +/- 0.0150
+TDC evaluate_many:     0.7420 +/- 0.0200
 Averaged-vector AUPRC: 0.7675
-*** BEAT SOTA by +0.007 (mean) / +0.032 (vector) ***
+*** BEAT SOTA by +0.0063 (mean) / +0.0315 (vector) ***
 ```
 
 Results saved to `output/cyp2d6_sub_results.json` + `output/cyp2d6_sub_preds.npz` + `output/predictions_test.txt`.

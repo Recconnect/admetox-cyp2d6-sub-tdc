@@ -3,8 +3,8 @@
   "protocol": "gin_contextpred_ft_ep60_lr0.001_bs32_inner0.15_bal1_n30",
   "tdc_results": {
     "cyp2d6_substrate_carbonmangels": [
-      0.743,
-      0.015
+      0.742,
+      0.02
     ]
   },
   "mean": 0.7422565761284574,

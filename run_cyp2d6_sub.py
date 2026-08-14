@@ -26,9 +26,9 @@ Pipeline:
   Report:    TDC evaluate_many (mean +/- std) + averaged-vector AUPRC
 
 Result:
-  TDC evaluate_many:     0.7430 +/- 0.0150  (30 runs)
+  TDC evaluate_many:     0.7420 +/- 0.0200  (30 runs)
   Averaged-vector AUPRC: 0.7675
-  vs TDC SOTA 0.736 (ContextPred) -> BEAT +0.007/+0.032
+  vs TDC SOTA 0.736 (ContextPred) -> BEAT +0.006/+0.031
 
 Usage:
   python run_cyp2d6_sub.py                          # 30 seeds (full submission)
